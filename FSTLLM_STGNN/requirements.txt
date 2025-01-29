@@ -1,0 +1,13 @@
+sqlalchemy==1.4.17
+scikit-learn==0.24.2
+scipy==1.6.2
+numpy==1.20.3
+pandas==1.2.4
+pyyaml==5.4.1 #0.2.5 
+statsmodels==0.12.2
+wrapt==1.13.3
+tensorflow==2.4.1
+torch==1.8.1
+tables==3.6.1
+future==0.18.2
+entmax==1.0
