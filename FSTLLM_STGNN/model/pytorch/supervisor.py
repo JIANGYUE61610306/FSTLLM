@@ -41,8 +41,8 @@ class STGNNSupervisor:
         elif self._data_kwargs['dataset_dir'] == 'data/PEMS-BAY':
             df = pd.read_hdf('./data/pems-bay.h5')
         elif self._data_kwargs['dataset_dir'] == 'data/NOT':
-            df = pd.read_hdf('/nottingham.h5')
-            embeddings = np.load('embeddings.npz')
+            df = pd.read_hdf('./data/nottingham.h5')
+            embeddings = np.load('./data/embeddings.npz')
 
         
         scaler = utils.StandardScaler(mean=embeddings.mean(), std=embeddings.std())
