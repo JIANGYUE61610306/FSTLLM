@@ -116,25 +116,32 @@ for i in range(len(loaded_list)):
     else:
         numerical_list.append(list(test_pred[i]))
 
-        LLM_pred = np.zeros((19*2163, 8))
+LLM_pred = np.zeros((19*2163, 8))
 for i in range(len(numerical_list)):
-    if type(numerical_list[i][-1]) == str:    
-        numerical_values=numerical_list[i]
-        re_list = []
-        if len(numerical_values) < 8:
-            numerical_values.append(numerical_values[-1])
-        for j in range(8):
-            # print(i,j)
-            if numerical_values[j] == '-.':
-                numerical_values[j] = numerical_values[j-1]
-            if numerical_values[j][-1] != '.':
-                re_list.append(numerical_values[j])
-            else:
-                re_list.append(numerical_values[j][:-1])
-        numerical_array = np.array([float(num) for num in re_list])
-        LLM_pred[i,:]=numerical_array
-    else:
-        LLM_pred[i,:]=numerical_list[i]
+    try:
+        if type(numerical_list[i][-1]) == str:    
+            numerical_values=numerical_list[i]
+            re_list = []
+            if len(numerical_values) < 8:
+                numerical_values.append(numerical_values[-1])
+            for j in range(8):
+                # print(i,j)
+                if numerical_values[j] == '-.':
+                    numerical_values[j] = numerical_values[j-1]
+                if numerical_values[j][-1] != '.':
+                    re_list.append(numerical_values[j])
+                else:
+                    re_list.append(numerical_values[j][:-1])
+            numerical_array = np.array([float(num) for num in re_list])
+            LLM_pred[i,:]=numerical_array
+        else:
+            LLM_pred[i,:]=numerical_list[i]
+    except ValueError:
+        LLM_pred[i, :] = test_pred[i]  # Assign test_pred[i] if ValueError occurs
+        print(f"ValueError encountered at index {i}, using test_pred[i] instead.")
+    except IndexError:
+        LLM_pred[i, :] = test_pred[i]  # Assign test_pred[i] if ValueError occurs
+        print(f"IndexError encountered at index {i}, using test_pred[i] instead.")
 # LLM_pred
 
 LLM_p = np.reshape(LLM_pred, (2163,19,8), order='F')
