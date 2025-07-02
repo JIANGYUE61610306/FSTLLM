@@ -132,7 +132,7 @@ use_nested_quant = False
 output_dir = "./results"
 
 # Number of training epochs
-num_train_epochs = 2
+num_train_epochs = 10
 
 # Enable fp16/bf16 training (set bf16 to True with an A100)
 fp16 = False
