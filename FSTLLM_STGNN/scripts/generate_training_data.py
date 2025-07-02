@@ -10,7 +10,7 @@ import pandas as pd
 
 
 def generate_graph_seq2seq_io_data(
-        df, x_offsets, y_offsets, add_time_in_day=True, add_day_in_week=False, scaler=None
+        df, x_offsets, y_offsets, add_time_in_day=False, add_day_in_week=False, scaler=None
 ):
     """
     Generate samples from
@@ -68,7 +68,7 @@ def generate_train_val_test(args):
         df,
         x_offsets=x_offsets,
         y_offsets=y_offsets,
-        add_time_in_day=True,
+        add_time_in_day=False,
         add_day_in_week=False,
     )
 
@@ -82,8 +82,8 @@ def generate_train_val_test(args):
     num_val = num_samples - num_test - num_train
 
     # train
-    # x_train, y_train = x[num_train-672*6:num_train], y[num_train-672*6:num_train]
-    x_train, y_train = x[num_train-24*7:num_train], y[num_train-24*7:num_train]
+    x_train, y_train = x[num_train-96*7:num_train], y[num_train-96*7:num_train]  ### for nottingham dataset 
+    # x_train, y_train = x[num_train-24*7:num_train], y[num_train-24*7:num_train]        ### for ECL dataset
     # x_train, y_train = x[:num_train], y[:num_train]
     # val
     x_val, y_val = (
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--traffic_df_filename",
         type=str,
-        default="data/metr-la.h5",
+        default="data/nottingham.h5",
         help="Raw traffic readings.",
     )
     args = parser.parse_args()
