@@ -68,7 +68,7 @@ def generate_train_val_test(args):
         df,
         x_offsets=x_offsets,
         y_offsets=y_offsets,
-        add_time_in_day=False,
+        add_time_in_day=True,
         add_day_in_week=False,
     )
 
