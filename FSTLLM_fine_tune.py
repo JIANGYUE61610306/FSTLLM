@@ -20,8 +20,8 @@ import numpy as np
 
 instruction_text = '<s>[INST] Role: You are an AI agent responsible for predicting the availability of parking lots. Objective: Your task is to forecast the number of available parking lots for the next 2 hours. To do this, you will analyze data from the past 2 hours of parking records, along with simulation-based predictions for the next 2 hours and other additional information that could affect the parking lots availability prediction values. Input Data: (1) Car park description: {}. (2) Prediction horizon: you are given 2 hours historical input from {} to {} on {}, and you are supposed to predict future parking lots from {} to {}. (3) The Natural patterns of parking availability (e.g., peak and off-peak periods throughout the day) are as follow: {}. (4) Historical Records: Parking data for the past 2 hours {}. (5) Simulation predictions: Forecasts for parking availability for the next 2 hours based on simulation models {}. Consider all provided information (historical records, simulation predictions, and additional factors) to predict parking lot availability for the next 2 hours with accuracy. Please analyze the data and provide only your final numerical predictions. DO NOT include any additional content in your answer. Strictly enclose your answer inside square brackets [] and provide exactly 8 numerical values. [/INST]. {}.</s>'
 parking_data = pd.read_hdf('nottingham.h5')
-true = np.load('ytrue_train.npz')
-pred = np.load('ypred_train.npz')
+true = np.load('ytrue_train.npz') ### address refer to FSTLLM_STGNN/data/
+pred = np.load('ypred_train.npz') ### address refer to FSTLLM_STGNN/data/
 carpark_des_list = []
 file_path = "carpark_des_list.txt"
 # Open the file in read mode
